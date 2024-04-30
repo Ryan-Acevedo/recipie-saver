@@ -1,0 +1,10 @@
+GitHub Repo or Organization: https://github.com/Ryan-Acevedo/recipie-saver.git
+Stack: MERN
+Project Name: Recipe Saver
+Project Description: An application for saving recipies
+MVP: CRUD a recipie
+Bonus Features: tailwind
+
+abarnard@codingdojo.com
+smaguina@codingdojo.com
+zeb.thomas211@gmail.com

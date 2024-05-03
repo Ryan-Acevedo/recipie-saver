@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import Nav from '../components/Nav'
 import { useNavigate, useParams } from 'react-router-dom'
+import { userContext } from '../contexts/userContext';
 
 const Update = (props) => {
+    const {user, setUser} = useContext(userContext);
     const { id } = useParams("")
     const navigate = useNavigate("")
     const [errors, setErrors] = useState({})
@@ -12,6 +14,19 @@ const Update = (props) => {
         cookTime: "",
         directions: "",
     })
+
+    // setUser and authentication
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/user', { withCredentials: true })
+            .then((res) => {
+                console.log(res.data);
+                setUser(res.data)
+            })
+            .catch((err) => {
+                navigate('/unauthorized')
+                console.log(err);
+            })
+    }, [])
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/recipes/${id}`)

@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { userContext } from '../contexts/userContext';
 
 const recipesOptions = (props) => {
-
+    const navigate = useNavigate();
+    const {user, setUser} = useContext(userContext);
     const [recipes, setRecipes] = useState([]);
     useEffect(() => {
         axios.get('http://localhost:8000/api/recipes')
@@ -15,8 +17,22 @@ const recipesOptions = (props) => {
             })
     }, [])
 
+    // setUser and authentication
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/user', { withCredentials: true })
+            .then((res) => {
+                console.log(res.data);
+                setUser(res.data)
+            })
+            .catch((err) => {
+                navigate('/unauthorized')
+                console.log(err);
+            })
+    }, [])
+
     return (
         <div className='flex flex-col justify-center items-center'>
+            
             <header className='w-full bg-gray-950 flex flex-row justify-between items-center p-5' >
                 <div>
                     <h1 className='text-gray-100 decoration-solid text-6xl italic' >Recipe Options</h1>

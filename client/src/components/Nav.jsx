@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { userContext } from '../contexts/userContext';
@@ -18,6 +18,7 @@ const Nav = (props) => {
                 console.error(err);
             })
     }
+
 
     return (
         <div className='flex flex-col justify-center items-center w-full'>

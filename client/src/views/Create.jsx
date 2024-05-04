@@ -11,7 +11,11 @@ const Create = (props) => {
     const [getter, setter] = useState({
         name: "",
         cookTime: "",
-        directions: ""
+        directions: "",
+        user: {
+            firstName: user.firstName,
+            id: user._id
+        }
     })
 
     const changeHandler = (e) => {
@@ -36,7 +40,7 @@ const Create = (props) => {
     useEffect(() => {
         axios.get('http://localhost:8000/api/user', { withCredentials: true })
             .then((res) => {
-                console.log(res.data);
+                // console.log(res.data);
                 setUser(res.data)
             })
             .catch((err) => {

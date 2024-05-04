@@ -13,13 +13,19 @@ const Update = (props) => {
         name: "",
         cookTime: "",
         directions: "",
+        user: {
+            firstName: user.firstName,
+            id: user._id
+        }
     })
 
     // setUser and authentication
     useEffect(() => {
         axios.get('http://localhost:8000/api/user', { withCredentials: true })
             .then((res) => {
-                console.log(res.data);
+                if (res.data._id!==getter.user.id){
+                    navigate('/unauthorized')
+                }
                 setUser(res.data)
             })
             .catch((err) => {
@@ -31,11 +37,7 @@ const Update = (props) => {
     useEffect(() => {
         axios.get(`http://localhost:8000/api/recipes/${id}`)
             .then((res) => {
-                setter({
-                    name: res.data.name,
-                    cookTime: res.data.cookTime,
-                    directions: res.data.directions,
-                })
+                setter({})
             })
             .catch((err) => {
                 console.log(err);

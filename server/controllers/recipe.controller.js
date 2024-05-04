@@ -3,6 +3,7 @@ import Recipe from "../models/recipe.model.js";
 // CREATE
 async function createRecipe(req, res) {
     try {
+        console.log("------create body------",req.body);
         const newRecipe = await Recipe.create(req.body);
         res.json(newRecipe);
     } catch (error) {

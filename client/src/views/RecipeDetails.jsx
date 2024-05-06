@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Nav from '../components/Nav';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import axios from 'axios';
+import { userContext } from '../contexts/userContext';
 
 const RecipeDetails = (props) => {
+    const {user, setUser} = useContext(userContext);
     const [recipe, setRecipe] = useState({})
     const { id } = useParams()
     const navigate = useNavigate()
@@ -11,10 +13,24 @@ const RecipeDetails = (props) => {
     useEffect(() => {
         axios.get(`http://localhost:8000/api/recipes/${id}`)
             .then((res) => {
+                console.log(res.data);
                 setRecipe(res.data)
             })
             .catch((err) => {
                 console.log(err)
+            })
+    }, [])
+
+    // setUser and authentication
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/user', { withCredentials: true })
+            .then((res) => {
+                console.log(res.data);
+                setUser(res.data)
+            })
+            .catch((err) => {
+                navigate('/unauthorized')
+                console.log(err);
             })
     }, [])
 
@@ -27,6 +43,12 @@ const RecipeDetails = (props) => {
                     <h3 className='ml-4 text-xl underline decoration-myColor-950'>Cook Time: {recipe.cookTime} minutes</h3>
                     <h3 className='ml-4 text-xl'>Directions:</h3>
                     <h4 className='ml-8 mb-8'>{recipe.directions}</h4>
+                    <p>Posted by:</p>
+                    {
+                        recipe.user?
+                        <p>{recipe.user.firstName}</p>:
+                        <p>no user</p>
+                    }
                 </div>
             </div>
         </div>

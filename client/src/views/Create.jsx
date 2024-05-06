@@ -1,15 +1,21 @@
-import React, { useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import Nav from '../components/Nav'
 import { useNavigate } from 'react-router-dom'
+import { userContext } from '../contexts/userContext';
 
 const Create = (props) => {
+    const {user, setUser} = useContext(userContext);
     const navigate = useNavigate()
     const [errors, setErrors] = useState({})
     const [getter, setter] = useState({
         name: "",
         cookTime: "",
-        directions: ""
+        directions: "",
+        user: {
+            firstName: user.firstName,
+            id: user._id
+        }
     })
 
     const changeHandler = (e) => {
@@ -29,6 +35,19 @@ const Create = (props) => {
                 setErrors(err.response.data.errors)
             })
     }
+
+    // setUser and authentication
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/user', { withCredentials: true })
+            .then((res) => {
+                // console.log(res.data);
+                setUser(res.data)
+            })
+            .catch((err) => {
+                navigate('/unauthorized')
+                console.log(err);
+            })
+    }, [])
 
     return (
         <div className='flex flex-col justify-center items-center'>

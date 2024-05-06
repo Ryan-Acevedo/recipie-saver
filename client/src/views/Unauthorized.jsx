@@ -18,8 +18,8 @@ const Unauthorized = (props) => {
                 </div>
             </header>
             <div className='flex flex-col w-full justify-start items-center bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%' style={{ height: '100vh' }}>
-            <div className='m-8 bg-myColor-50 p-5 shadow-2xl shadow-gray-950' >
-                    <h2 className='text-red-600 text-4xl mb-4'>Unathorized: Access is denied due to invalid credentials.</h2>
+                <div className='m-8 bg-myColor-50 p-5 shadow-2xl shadow-gray-950' >
+                    <h2 className='text-red-600 text-4xl mb-4'>Unauthorized: Access is denied due to invalid credentials.</h2>
                     <h2 className='text-myColor-900 text-4xl mb-4'>You do not have permission to view this page. Please login or register to continue.</h2>
                 </div>
             </div>

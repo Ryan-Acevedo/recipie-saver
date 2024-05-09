@@ -3,6 +3,7 @@ import Nav from '../components/Nav';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import { userContext } from '../contexts/userContext';
+import  Timer  from '../components/Timer'
 
 const RecipeDetails = (props) => {
     const {user, setUser} = useContext(userContext);
@@ -41,6 +42,7 @@ const RecipeDetails = (props) => {
                 <div className='m-8 bg-myColor-50 p-5 shadow-2xl shadow-gray-950' >
                     <h2 className='text-myColor-900 text-4xl mb-4'>Description:</h2>
                     <h3 className='ml-4 text-xl underline decoration-myColor-950'>Cook Time: {recipe.cookTime} minutes</h3>
+                    <Timer/>
                     <h3 className='ml-4 text-xl'>Directions:</h3>
                     <h4 className='ml-8 mb-8'>{recipe.directions}</h4>
                     <p>Posted by:</p>

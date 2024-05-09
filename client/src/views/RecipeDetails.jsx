@@ -52,7 +52,10 @@ const RecipeDetails = (props) => {
                     }
                 </div>
                 <div className='ml-8'>
-                    <Timer time={recipe.cookTime}/>
+                    {
+                        recipe.cookTime&&
+                        <Timer time={recipe.cookTime}/>
+                    }
                 </div>
             </div>
         </div>

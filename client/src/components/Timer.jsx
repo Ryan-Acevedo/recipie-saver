@@ -3,8 +3,9 @@ import { useState, useEffect } from "react";
 const Timer = (props) => {
 
     const {time} = props;
+    console.log(time);
 
-    const [seconds, setSeconds] = useState(0);
+    const [seconds, setSeconds] = useState(time*60);
     const [pauseToggle, setPauseToggle] = useState(false);
     
     const toggle = () => {

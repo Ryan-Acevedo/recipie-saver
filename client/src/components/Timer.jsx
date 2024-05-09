@@ -4,9 +4,9 @@ const Timer = (props) => {
 
     const {time} = props;
 
-    const [seconds, setSeconds] = useState(0)
+    const [seconds, setSeconds] = useState(0);
     const [pauseToggle, setPauseToggle] = useState(false);
-
+    
     const toggle = () => {
         setPauseToggle(!pauseToggle);
     }

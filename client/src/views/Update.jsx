@@ -37,7 +37,7 @@ const Update = (props) => {
     useEffect(() => {
         axios.get(`http://localhost:8000/api/recipes/${id}`)
             .then((res) => {
-                setter({})
+                setter(res.data)
             })
             .catch((err) => {
                 console.log(err);

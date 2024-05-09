@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 
-const Timer = () => {
+const Timer = (props) => {
 
+    const {time} = props;
 
     const [seconds, setSeconds] = useState(0)
     const [pauseToggle, setPauseToggle] = useState(false);

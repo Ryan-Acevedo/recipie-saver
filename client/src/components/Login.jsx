@@ -74,7 +74,7 @@ const Login = (props) => {
         <div className='flex flex-col justify-center items-center'>
             <header className='w-full bg-gray-950 flex flex-row justify-between items-center p-5'>
                 <div>
-                    <h1 className='text-gray-100 decoration-solid text-6xl italic' >Recipe Options</h1>
+                    <h1 className='text-gray-100 decoration-solid text-6xl italic' >Recipe Saver</h1>
                 </div>
             </header>
             <div className='flex w-full justify-around items-start bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%' style={{ height: '100vh' }}>
